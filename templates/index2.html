@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %} Index Page for forms, POST Requests,file handling{% endblock %}
+
+{% block content %} 
+    <h1>Index Page for forms, POST Requests,file handling</h1>
+    <div>
+        <form method="POST" action="{{ url_for('index2')}}">
+            <input type="text" name="username" placeholder="Username">
+            <input type="password" name="password" placeholder="Password">
+            <input type="submit" value="login">
+        </form>
+    </div>
+    <div>
+        <h1>File Upload</h1>
+        <form method="POST" action="{{url_for('file_upload')}}" enctype="multipart/form-data">
+            <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel, application/vnd.ms-excel,text/plain" required="required">
+            <input type="submit" value="UploadFile">
+
+        </form>
+        <h1>Convert To CSV</h1>
+        <form method="POST" action="{{url_for('convert_csv')}}" enctype="multipart/form-data">
+            <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel, application/vnd.ms-excel" required="required">
+            <input type="submit" value="UploadFile">
+
+        </form>
+        <h1>Convert To CSV Second Method</h1>
+        <form method="POST" action="{{url_for('download_csv')}}" enctype="multipart/form-data">
+            <input type="file" name="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document, 
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-excel, application/vnd.ms-excel" required="required">
+            <input type="submit" value="UploadFile">
+
+        </form>
+
+        <h1>Javascript - Json Request </h1>
+        <button id="post_button"> Send POST Button</button>        
+    </div>
+
+    <script type="text/javascript">
+        const postButton = document.getElementById('post_button');
+        const jsonData = {name: 'Mike', greetings: 'Greetings'};
+
+        postButton.addEventListener('click', () => {
+            fetch('{{ url_for("handle_post") }}' , {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json; charset=utf-8' 
+                },
+                body: JSON.stringify(jsonData)
+            })
+            .then(resp => resp.json())
+            .then(data => console.log('success', data))
+            .catch((error) => {
+                console.error('Error', error)
+            })
+        })
+    </script>
+ 
+
+{% endblock %}

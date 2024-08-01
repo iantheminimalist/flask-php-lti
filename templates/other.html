@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %} Index Page {% endblock %}
+
+{% block content %} 
+    <h1>Jinja2 Filters </h1>
+    {{somme_text|upper}}
+    {{somme_text|reverse_string }}
+
+{% endblock %}

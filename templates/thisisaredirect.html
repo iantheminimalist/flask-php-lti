@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{% block title %} This is a redirect test html {% endblock %}
+
+{% block content %} 
+    <h1> dynamic url without specifiying it statically. by using the function name.</h1>
+    {{somme_text|upper}}
+    {{somme_text|reverse_string }}
+
+{% endblock %}
