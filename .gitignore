@@ -1,2 +1,4 @@
 flaskphpenv/
+/flaskphpenv/
+
 .env/
