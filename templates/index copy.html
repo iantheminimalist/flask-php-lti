@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %} Index Page {% endblock %}
+
+{% block content %} 
+    <h1>hello world</h1>
+    <p>{{myValue}}</p>
+    <p>{{myResult}}</p>
+    <ul>
+        {% for item in myList %}
+            
+            <li {%if item == 30 %} style="color: red;" {% elif item ==50 %} style="color: blue;" {% endif %}>{{item}} </li>
+        {% endfor %}
+    </ul>
+    <div>
+        <a href="{{ url_for('thisisaredirect')}}"> link</a>
+    </div>    
+
+{% endblock %}
